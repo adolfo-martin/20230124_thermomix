@@ -1,0 +1,15 @@
+FROM mariadb:10.9.4-jammy
+ENV MYSQL_ROOT_PASSWORD Hola1234
+ENV MYSQL_DATABASE thermomix
+ENV MYSQL_USER thermomix
+ENV MYSQL_PASSWORD Hola1234
+ADD ./thermomix.sql /docker-entrypoint-initdb.d
+EXPOSE 3306
+
+# docker build -t adomargon/thermomix_db_server:0.10 .
+# docker push adomargon/thermomix_db_server:0.10
+# docker start adomargon/thermomix_db_server:0.10
+
+
+# docker run --name thermomix_db_server --publish 3306:3306 adomargon/thermomix_db_server:0.10
+# docker exec -it thermomix_db_server mariadb --database thermomix -u thermomix -p

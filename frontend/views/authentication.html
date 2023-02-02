@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="./style.css">
+
+    <script src="../components/HeaderAuthenticationComponent.js" type="module" defer></script>
+    <script src="../components/AuthenticationFormComponent.js" type="module" defer></script>
+
+    <script type="module">
+        import SpinnerLoadingComponent from '../components/SpinnerLoadingComponent.js';
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const nForm = document.querySelector('authentication-form');
+            nForm.addEventListener('startauthentication', startAuthenticationRequest);
+            nForm.addEventListener('successfulauthentication', storeTokenAndGotoPageChooseSocket);
+            nForm.addEventListener('wrongauthentication', reportError);
+        });
+
+
+        function startAuthenticationRequest(e) {
+            const spinner = document.createElement('spinner-loading');
+            document.body.appendChild(spinner);
+        }
+
+
+        function storeTokenAndGotoPageChooseSocket(e) {
+            const token = e.detail.token;
+            window.sessionStorage.setItem('hardwareshop-token', token);
+            window.location = './choose_socket.html';
+        }
+
+
+        function reportError(e) {
+            const message = e.detail.message;
+            alert(message);
+        }
+    </script>
+</head>
+<body>
+    <header-authentication></header-authentication>
+
+    <main>
+        <authentication-form></authentication-form>
+    </main>
+</body>
+</html>

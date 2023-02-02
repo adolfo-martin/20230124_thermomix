@@ -1,0 +1,51 @@
+version: '3.1'
+
+networks:
+  thermomix_net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.0.0.0/24
+          gateway: 10.0.0.1
+
+services:
+  db:
+    image: adomargon/thermomix_db_server:0.10
+    container_name: thermomix_db_server
+    restart: always
+    ports:
+      - "3306:3306"
+    hostname: thermomix_db_server
+    networks:
+      thermomix_net:
+        ipv4_address: 10.0.0.2
+
+  authentication:
+    image: adomargon/node-authentication:1.0
+    container_name: authentication_rest_server
+    restart: always
+    ports:
+      - "8081:80"
+    hostname: authentication_rest_server
+    networks:
+      thermomix_net:
+        ipv4_address: 10.0.0.3
+
+  thermomix:
+    image: adomargon/thermomix_rest_server:0.11
+    container_name: thermomix_rest_server
+    ports:
+      - "8082:8082"
+    hostname: thermomix_rest_server
+    networks:
+      thermomix_net:
+        ipv4_address: 10.0.0.4
+
+
+  # docker exec -it thermomix_dbserver mariadb --database thermomix -u thermomix -p
+
+  # docker commit thermomix_dbserver adomargon/thermomix_database:1.1
+  # docker push adomargon/thermomix_db_server:1.1
+
+  # docker run --name thermomix_db_server --publish 3306:3306 adomargon/thermomix_db_server:1.1
