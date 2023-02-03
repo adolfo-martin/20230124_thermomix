@@ -1,6 +1,6 @@
-export default class HardwareshopService {
-    async retrieveSockets(token) {
-        const url = 'http://127.0.0.1:8082/api/sockets';
+export default class ThermomixService {
+    async retrieveBooks(token) {
+        const url = 'http://127.0.0.1:8082/api/books';
 
         // Comprueba si el servidor está encendido
         let response;
@@ -13,12 +13,12 @@ export default class HardwareshopService {
 
             response = await fetch(url, { method, headers });
         } catch (error) {
-            throw new Error(`Cannot retrieve sockets: ${error.message}`);
+            throw new Error(`Cannot retrieve books: ${error.message}`);
         }
 
         // Comprueba si el fetch fue correcto
         if (!response.ok) {
-            throw new Error(`Cannot retrieve sockets: [${response.status} ${response.statusText}]`);
+            throw new Error(`Cannot retrieve books: [${response.status} ${response.statusText}]`);
         }
 
         // Comprueba si estoy recibiendo JSON
@@ -26,20 +26,20 @@ export default class HardwareshopService {
         try {
             data = await response.json();
         } catch (error) {
-            throw new Error(`Cannot retrieve sockets: ${error.message}`);
+            throw new Error(`Cannot retrieve books: ${error.message}`);
         }
 
         // Comprueba si el data es correcto
         if (!data.ok) {
-            throw new Error(`Cannot retrieve sockets: ${data.message}`);
+            throw new Error(`Cannot retrieve books: ${data.message}`);
         }
 
-        return data.sockets;
+        return data.books;
     }
 
 
-    async retrieveProcessors(token) {
-        const url = 'http://127.0.0.1:8082/api/processors';
+    async retrieveDishes(token) {
+        const url = 'http://127.0.0.1:8082/api/dishes';
 
         // Comprueba si el servidor está encendido
         let response;
@@ -52,12 +52,12 @@ export default class HardwareshopService {
 
             response = await fetch(url, { method, headers });
         } catch (error) {
-            throw new Error(`Cannot retrieve sockets: ${error.message}`);
+            throw new Error(`Cannot retrieve books: ${error.message}`);
         }
 
         // Comprueba si el fetch fue correcto
         if (!response.ok) {
-            throw new Error(`Cannot retrieve sockets: [${response.status} ${response.statusText}]`);
+            throw new Error(`Cannot retrieve books: [${response.status} ${response.statusText}]`);
         }
 
         // Comprueba si estoy recibiendo JSON
@@ -65,20 +65,20 @@ export default class HardwareshopService {
         try {
             data = await response.json();
         } catch (error) {
-            throw new Error(`Cannot retrieve sockets: ${error.message}`);
+            throw new Error(`Cannot retrieve books: ${error.message}`);
         }
 
         // Comprueba si el data es correcto
         if (!data.ok) {
-            throw new Error(`Cannot retrieve sockets: ${data.message}`);
+            throw new Error(`Cannot retrieve books: ${data.message}`);
         }
 
-        return data.processors;
+        return data.dishes;
     }
 
 
-    async retrieveProcessorByUuid(processorUuid, token) {
-        const url = `http://127.0.0.1:8082/api/processor/${processorUuid}`;
+    async retrieveDishById(dishId, token) {
+        const url = `http://127.0.0.1:8082/api/dish/${dishId}`;
 
         // Comprueba si el servidor está encendido
         let response;
@@ -91,12 +91,12 @@ export default class HardwareshopService {
 
             response = await fetch(url, { method, headers });
         } catch (error) {
-            throw new Error(`Cannot retrieve processor: ${error.message}`);
+            throw new Error(`Cannot retrieve dish: ${error.message}`);
         }
 
         // Comprueba si el fetch fue correcto
         if (!response.ok) {
-            throw new Error(`Cannot retrieve processor: [${response.status} ${response.statusText}]`);
+            throw new Error(`Cannot retrieve dish: [${response.status} ${response.statusText}]`);
         }
 
         // Comprueba si estoy recibiendo JSON
@@ -104,20 +104,20 @@ export default class HardwareshopService {
         try {
             data = await response.json();
         } catch (error) {
-            throw new Error(`Cannot retrieve processor: ${error.message}`);
+            throw new Error(`Cannot retrieve dish: ${error.message}`);
         }
 
         // Comprueba si el data es correcto
         if (!data.ok) {
-            throw new Error(`Cannot retrieve sockets: ${data.message}`);
+            throw new Error(`Cannot retrieve books: ${data.message}`);
         }
 
-        return data.processor;
+        return data.dish;
     }
 
 
-    async retrieveProcessorsBySocketUuid(socketUuid, token) {
-        const url = `http://127.0.0.1:8082/api/socket/${socketUuid}/processors`;
+    async retrieveDishesByBookId(bookId, token) {
+        const url = `http://127.0.0.1:8082/api/book/${bookId}/dishes`;
 
         // Comprueba si el servidor está encendido
         let response;
@@ -130,12 +130,12 @@ export default class HardwareshopService {
 
             response = await fetch(url, { method, headers });
         } catch (error) {
-            throw new Error(`Cannot retrieve sockets: ${error.message}`);
+            throw new Error(`Cannot retrieve books: ${error.message}`);
         }
 
         // Comprueba si el fetch fue correcto
         if (!response.ok) {
-            throw new Error(`Cannot retrieve sockets: [${response.status} ${response.statusText}]`);
+            throw new Error(`Cannot retrieve books: [${response.status} ${response.statusText}]`);
         }
 
         // Comprueba si estoy recibiendo JSON
@@ -143,20 +143,20 @@ export default class HardwareshopService {
         try {
             data = await response.json();
         } catch (error) {
-            throw new Error(`Cannot retrieve sockets: ${error.message}`);
+            throw new Error(`Cannot retrieve books: ${error.message}`);
         }
 
         // Comprueba si el data es correcto
         if (!data.ok) {
-            throw new Error(`Cannot retrieve sockets: ${data.message}`);
+            throw new Error(`Cannot retrieve books: ${data.message}`);
         }
 
-        return data.processors;
+        return data.dishes;
     }
 
 
-    async retrieveMotherboardByUuid(motherboardUuid, token) {
-        const url = `http://127.0.0.1:8082/api/motherboard/${motherboardUuid}`;
+    async retrieveRecipeById(recipeId, token) {
+        const url = `http://127.0.0.1:8082/api/recipe/${recipeId}`;
 
         // Comprueba si el servidor está encendido
         let response;
@@ -169,12 +169,12 @@ export default class HardwareshopService {
 
             response = await fetch(url, { method, headers });
         } catch (error) {
-            throw new Error(`Cannot retrieve motherboard: ${error.message}`);
+            throw new Error(`Cannot retrieve recipe: ${error.message}`);
         }
 
         // Comprueba si el fetch fue correcto
         if (!response.ok) {
-            throw new Error(`Cannot retrieve motherboard: [${response.status} ${response.statusText}]`);
+            throw new Error(`Cannot retrieve recipe: [${response.status} ${response.statusText}]`);
         }
 
         // Comprueba si estoy recibiendo JSON
@@ -182,20 +182,20 @@ export default class HardwareshopService {
         try {
             data = await response.json();
         } catch (error) {
-            throw new Error(`Cannot retrieve motherboard: ${error.message}`);
+            throw new Error(`Cannot retrieve recipe: ${error.message}`);
         }
 
         // Comprueba si el data es correcto
         if (!data.ok) {
-            throw new Error(`Cannot retrieve sockets: ${data.message}`);
+            throw new Error(`Cannot retrieve books: ${data.message}`);
         }
 
-        return data.motherboard;
+        return data.recipe;
     }
 
 
-    async retrieveMotherboardsBySocketUuid(socketUuid, token) {
-        const url = `http://127.0.0.1:8082/api/socket/${socketUuid}/motherboards`;
+    async retrieveRecipesByBookId(bookId, token) {
+        const url = `http://127.0.0.1:8082/api/book/${bookId}/recipes`;
 
         // Comprueba si el servidor está encendido
         let response;
@@ -208,12 +208,12 @@ export default class HardwareshopService {
 
             response = await fetch(url, { method, headers });
         } catch (error) {
-            throw new Error(`Cannot retrieve sockets: ${error.message}`);
+            throw new Error(`Cannot retrieve books: ${error.message}`);
         }
 
         // Comprueba si el fetch fue correcto
         if (!response.ok) {
-            throw new Error(`Cannot retrieve sockets: [${response.status} ${response.statusText}]`);
+            throw new Error(`Cannot retrieve books: [${response.status} ${response.statusText}]`);
         }
 
         // Comprueba si estoy recibiendo JSON
@@ -221,14 +221,14 @@ export default class HardwareshopService {
         try {
             data = await response.json();
         } catch (error) {
-            throw new Error(`Cannot retrieve sockets: ${error.message}`);
+            throw new Error(`Cannot retrieve books: ${error.message}`);
         }
 
         // Comprueba si el data es correcto
         if (!data.ok) {
-            throw new Error(`Cannot retrieve sockets: ${data.message}`);
+            throw new Error(`Cannot retrieve books: ${data.message}`);
         }
 
-        return data.motherboards;
+        return data.recipes;
     }
 }
