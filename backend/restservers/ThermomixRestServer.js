@@ -39,7 +39,7 @@ export default class ThermomixRestServer {
         this.#app.get('/api/book/:bookId/dishes', this.#validateTokenMiddleware.bind(this), this.#retrieveAndSendDishesByBookId.bind(this));
         this.#app.get('/api/dish/:dishId', this.#validateTokenMiddleware.bind(this), this.#retrieveAndSendDishById.bind(this));
         this.#app.get('/api/recipes', this.#validateTokenMiddleware.bind(this), this.#retrieveAndSendRecipes.bind(this));
-        this.#app.get('/api/book/:bookId/recipes', this.#validateTokenMiddleware.bind(this), this.#retrieveAndSendRecipesByBookId.bind(this));
+        // this.#app.get('/api/book/:bookId/recipes', this.#validateTokenMiddleware.bind(this), this.#retrieveAndSendRecipesByBookId.bind(this));
         this.#app.get('/api/recipe/:recipeId', this.#validateTokenMiddleware.bind(this), this.#retrieveAndSendRecipeById.bind(this));
         this.#app.get('*', this.#validateTokenMiddleware.bind(this), this.#sendPleaseUseOurApi.bind(this));
     }
@@ -86,6 +86,11 @@ export default class ThermomixRestServer {
                 }
 
                 const dishes = await this.#repository.retrieveDishesByBookId(bookId);
+                if (dishes.length === 0) {
+                    res.status(400).json({ ok: false, message: `There are no dishes for book ${bookId}` });
+                    return;
+                }
+
                 const dishesIds = dishes.map(({ id }) => id);
                 res.status(200).json({ ok: true, dishes: dishesIds });
             } catch (error) {
@@ -105,6 +110,11 @@ export default class ThermomixRestServer {
                 }
 
                 const dish = await this.#repository.retrieveDishById(dishId);
+                if (!dish) {
+                    res.status(400).json({ ok: false, message: `There is not dish for id ${dishId}` });
+                    return;
+                }
+
                 res.status(200).json({ ok: true, dish });
             } catch (error) {
                 res.status(400).json({ ok: false, message: error.message });
@@ -125,25 +135,6 @@ export default class ThermomixRestServer {
     }
 
 
-    async #retrieveAndSendRecipesByBookId(req, res) {
-        setTimeout(async () => {
-            try {
-                const bookId = req.params.bookId;
-                if (!bookId) {
-                    res.status(400).json({ ok: false, message: 'There is not book id.' });
-                    return;
-                }
-
-                const recipes = await this.#repository.retrieveRecipesByBookId(bookId);
-                const recipesIds = recipes.map(({ id }) => id);
-                res.status(200).json({ ok: true, recipes: recipesIds });
-            } catch (error) {
-                res.status(400).json({ ok: false, message: error.message });
-            }
-        }, 1000);
-    }
-
-
     async #retrieveAndSendRecipeById(req, res) {
         setTimeout(async () => {
             try {
@@ -154,6 +145,11 @@ export default class ThermomixRestServer {
                 }
 
                 const recipe = await this.#repository.retrieveRecipeById(recipeId);
+                if (!recipe) {
+                    res.status(400).json({ ok: false, message: `There is not recipe for id ${recipeId}` });
+                    return;
+                }
+
                 res.status(200).json({ ok: true, recipe });
             } catch (error) {
                 res.status(400).json({ ok: false, message: error.message });
