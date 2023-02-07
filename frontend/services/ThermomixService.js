@@ -2,6 +2,10 @@ export default class ThermomixService {
     async retrieveBooks(token) {
         const url = 'http://127.0.0.1:8082/api/books';
 
+        if (!token) {
+            throw new Error(`Cannot retrieve books: No token}`);
+        }
+
         // Comprueba si el servidor está encendido
         let response;
         try {
@@ -40,6 +44,10 @@ export default class ThermomixService {
 
     async retrieveDishes(token) {
         const url = 'http://127.0.0.1:8082/api/dishes';
+
+        if (!token) {
+            throw new Error(`Cannot retrieve dishes: No token}`);
+        }
 
         // Comprueba si el servidor está encendido
         let response;
@@ -80,6 +88,10 @@ export default class ThermomixService {
     async retrieveDishById(dishId, token) {
         const url = `http://127.0.0.1:8082/api/dish/${dishId}`;
 
+        if (!token) {
+            throw new Error(`Cannot retrieve dish: No token}`);
+        }
+
         // Comprueba si el servidor está encendido
         let response;
         try {
@@ -118,6 +130,10 @@ export default class ThermomixService {
 
     async retrieveDishesByBookId(bookId, token) {
         const url = `http://127.0.0.1:8082/api/book/${bookId}/dishes`;
+
+        if (!token) {
+            throw new Error(`Cannot retrieve dishes: No token}`);
+        }
 
         // Comprueba si el servidor está encendido
         let response;
@@ -158,6 +174,10 @@ export default class ThermomixService {
     async retrieveRecipeById(recipeId, token) {
         const url = `http://127.0.0.1:8082/api/recipe/${recipeId}`;
 
+        if (!token) {
+            throw new Error(`Cannot retrieve recipe: No token}`);
+        }
+
         // Comprueba si el servidor está encendido
         let response;
         try {
@@ -196,6 +216,10 @@ export default class ThermomixService {
 
     async retrieveRecipesByBookId(bookId, token) {
         const url = `http://127.0.0.1:8082/api/book/${bookId}/recipes`;
+
+        if (!token) {
+            throw new Error(`Cannot retrieve recipes: No token}`);
+        }
 
         // Comprueba si el servidor está encendido
         let response;
