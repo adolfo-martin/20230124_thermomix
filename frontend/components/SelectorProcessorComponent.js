@@ -67,7 +67,7 @@ export default class SelectorProcessorComponent extends HTMLElement {
     
     async #retrieveAndRenderProcessors() {
         try {
-            const token = window.sessionStorage.getItem('hardwareshop-token');
+            const token = window.sessionStorage.getItem('thermomix-token');
             const service = new HardwareshopService();
             const socketUuid = this.#getSocketUuidFromUrl();
             const processors = await service.retrieveProcessorsBySocketUuid(socketUuid, token);

@@ -9,26 +9,26 @@
     <link rel="stylesheet" href="./style.css">
 
     <script src="../components/HeaderAuthenticationComponent.js" type="module" defer></script>
-    <script src="../components/SelectorSocketComponent.js" type="module" defer></script>
+    <script src="../components/SelectorBookComponent.js" type="module" defer></script>
 </head>
 <body>
     <script type="module">
-        const token = window.sessionStorage.getItem('hardwareshop-token');
+        const token = window.sessionStorage.getItem('thermomix-token');
         if (!token) {
             window.location = './authentication.html';
         }
 
         document.addEventListener('DOMContentLoaded', e => {
-            const nSelector = document.querySelector('selector-socket');
-            nSelector.addEventListener('socketselected', e => {
-                window.location = `./choose_processor.html?socket=${e.detail.socket}`;
+            const nSelector = document.querySelector('selector-book');
+            nSelector.addEventListener('bookselected', e => {
+                window.location = `./choose_dish.html?book=${e.detail.book}`;
             })
         });
     </script>
     
     <header-authentication></header-authentication>
     <main>
-        <selector-socket></selector-socket>
+        <selector-book></selector-book>
     </main>
 </body>
 </html>

@@ -35,6 +35,7 @@ services:
   thermomix:
     image: adomargon/thermomix_rest_server:0.12
     container_name: thermomix_rest_server
+    restart: always
     ports:
       - "8082:8082"
     hostname: thermomix_rest_server

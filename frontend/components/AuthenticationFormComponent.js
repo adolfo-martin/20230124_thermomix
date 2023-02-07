@@ -10,13 +10,16 @@ export default class AuthenticationFormComponent extends HTMLElement {
                 display: inline-grid;
                 grid-template-columns: auto auto;
                 gap: 0.5rem;
+                background-color: var(--light-color);
+                padding: 1rem !important;
             }
 
             header, button {
                 grid-column: 1 / span 2;
             }
 
-            button {
+            button, input {
+                font-size: inherit;
                 margin: auto;
             }
         </style>

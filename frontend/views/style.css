@@ -2,6 +2,7 @@
     font-family: Arial, Helvetica, sans-serif;
     font-size: 20px;
     --dark-color: #032954;
+    --light-color: #d5e2e7;
 }
 
 * {
@@ -27,4 +28,11 @@ header-authentication {
     padding: 0.25em;
     background-color: var(--dark-color);
     color: white;
+}
+
+button {
+    background-color: red;
+    outline: none;
+    border: none;
+    font-size: 1rem;
 }

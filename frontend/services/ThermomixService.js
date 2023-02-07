@@ -130,12 +130,12 @@ export default class ThermomixService {
 
             response = await fetch(url, { method, headers });
         } catch (error) {
-            throw new Error(`Cannot retrieve books: ${error.message}`);
+            throw new Error(`Cannot retrieve dishes: ${error.message}`);
         }
 
         // Comprueba si el fetch fue correcto
         if (!response.ok) {
-            throw new Error(`Cannot retrieve books: [${response.status} ${response.statusText}]`);
+            throw new Error(`Cannot retrieve dishes: [${response.status} ${response.statusText}]`);
         }
 
         // Comprueba si estoy recibiendo JSON
@@ -143,12 +143,12 @@ export default class ThermomixService {
         try {
             data = await response.json();
         } catch (error) {
-            throw new Error(`Cannot retrieve books: ${error.message}`);
+            throw new Error(`Cannot retrieve dishes: ${error.message}`);
         }
 
         // Comprueba si el data es correcto
         if (!data.ok) {
-            throw new Error(`Cannot retrieve books: ${data.message}`);
+            throw new Error(`Cannot retrieve dishes: ${data.message}`);
         }
 
         return data.dishes;
@@ -187,7 +187,7 @@ export default class ThermomixService {
 
         // Comprueba si el data es correcto
         if (!data.ok) {
-            throw new Error(`Cannot retrieve books: ${data.message}`);
+            throw new Error(`Cannot retrieve recipe: ${data.message}`);
         }
 
         return data.recipe;
@@ -208,12 +208,12 @@ export default class ThermomixService {
 
             response = await fetch(url, { method, headers });
         } catch (error) {
-            throw new Error(`Cannot retrieve books: ${error.message}`);
+            throw new Error(`Cannot retrieve recipes: ${error.message}`);
         }
 
         // Comprueba si el fetch fue correcto
         if (!response.ok) {
-            throw new Error(`Cannot retrieve books: [${response.status} ${response.statusText}]`);
+            throw new Error(`Cannot retrieve recipes: [${response.status} ${response.statusText}]`);
         }
 
         // Comprueba si estoy recibiendo JSON
@@ -226,7 +226,7 @@ export default class ThermomixService {
 
         // Comprueba si el data es correcto
         if (!data.ok) {
-            throw new Error(`Cannot retrieve books: ${data.message}`);
+            throw new Error(`Cannot retrieve recipes: ${data.message}`);
         }
 
         return data.recipes;

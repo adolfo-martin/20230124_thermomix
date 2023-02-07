@@ -61,7 +61,7 @@
 
             const service = new ThermomixService();
             try {
-                const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNvbmlhLnNpbHZlcmFkbyIsImZpcnN0bmFtZSI6IlNvbmlhIiwibGFzdG5hbWUiOiJTaWx2ZXJhZG8iLCJpYXQiOjE2NzU0NDQxMzUsImV4cCI6MTY3NTQ1ODUzNX0.h76l9D2I6Xb5qnWwyWQ6onqjo8KtzXQNzONN8gG4b1U';
+                const token = window.sessionStorage.getItem('thermomix-token')
                 const dishes = await service.retrieveDishesByBookId(bookId, token);
                 await renderDishes(dishes);
                 hideSpinner();
@@ -77,7 +77,7 @@
             const service = new ThermomixService();
 
             const promises = dishes.map(async dishId => {
-                const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNvbmlhLnNpbHZlcmFkbyIsImZpcnN0bmFtZSI6IlNvbmlhIiwibGFzdG5hbWUiOiJTaWx2ZXJhZG8iLCJpYXQiOjE2NzU0NDQxMzUsImV4cCI6MTY3NTQ1ODUzNX0.h76l9D2I6Xb5qnWwyWQ6onqjo8KtzXQNzONN8gG4b1U';
+                const token = window.sessionStorage.getItem('thermomix-token');
                 const dish = await service.retrieveDishById(dishId, token);
 
                 const nRadio = document.createElement('input');

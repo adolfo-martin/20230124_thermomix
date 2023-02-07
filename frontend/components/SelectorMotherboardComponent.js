@@ -79,7 +79,7 @@ export default class SelectorMotherboardComponent extends HTMLElement {
     
     async #retrieveAndRenderMotherboards() {
         try {
-            const token = window.sessionStorage.getItem('hardwareshop-token');
+            const token = window.sessionStorage.getItem('thermomix-token');
             const service = new HardwareshopService();
             const socketUuid = this.#getSocketUuidFromUrl();
             const motherboards = await service.retrieveMotherboardsBySocketUuid(socketUuid, token);

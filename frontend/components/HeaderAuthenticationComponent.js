@@ -18,7 +18,7 @@ export default class HeaderAuthenticationComponent extends HTMLElement {
                 font-size: 0.5em;
             }
         </style>
-        <header>Hardwareshop</header>
+        <header>Thermomix</header>
         <span id="tSpnFullname"></span>
         <button>Salir</button>
     `;
@@ -38,7 +38,7 @@ export default class HeaderAuthenticationComponent extends HTMLElement {
 
 
     #getToken() {
-        return window.sessionStorage.getItem('hardwareshop-token');
+        return window.sessionStorage.getItem('thermomix-token');
     }
 
 
@@ -86,7 +86,7 @@ export default class HeaderAuthenticationComponent extends HTMLElement {
 
         if (token) {
             nButton.addEventListener('click', e => {
-                const token = window.sessionStorage.removeItem('hardwareshop-token');
+                const token = window.sessionStorage.removeItem('thermomix-token');
                 window.location = './authentication.html';
             })
         } else {
